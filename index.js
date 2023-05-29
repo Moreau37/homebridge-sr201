@@ -3,10 +3,10 @@ const net = require('net');
 const { Accessory, uuid, Service: HAPService, Characteristic: HAPCharacteristic } = require('homebridge');
 
 module.exports = (api) => {
-  api.registerAccessory('homebridge-sr201', 'SR201Relay', SwitchAccessory);
+  api.registerAccessory('homebridge-sr201netrelay', 'SR201NetRelay', SR201NetRelayAccessory);
 } 
 
-class SwitchAccessory {
+class SR201NetRelayAccessory {
   constructor(log, config, api) {
     this.log = log;
     this.config = config;
@@ -42,7 +42,7 @@ class SwitchAccessory {
      /* Create a new information service. This just tells HomeKit about our accessory. */
     const informationService = new Service.AccessoryInformation()
         .setCharacteristic(Characteristic.Manufacturer, 'No idea')
-        .setCharacteristic(Characteristic.Model, 'SR201')
+        .setCharacteristic(Characteristic.Model, 'SR201NetRelay')
         .setCharacteristic(Characteristic.SerialNumber, 'Unspecified');
 
     if (this.config.pulse == false)
